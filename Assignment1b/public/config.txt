@@ -1,0 +1,4 @@
+dark-brown: #8E3200
+semi-brown: #A64B2A
+semi-light: #D7A86E
+light: #FFEBC1

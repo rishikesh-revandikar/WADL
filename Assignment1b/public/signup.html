@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Diphylleia&family=IBM+Plex+Mono&family=Jost:ital,wght@0,400;0,600;0,700;0,800;1,900&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,900&family=Quicksand:wght@400;600;700&family=Urbanist:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>College website</title>
+  </head>
+  <body>
+    <!-- ========== Start NAVBAR ========== -->
+
+    <header>
+      <div class="container">
+        <div class="nav-logo">
+          <img src="./images/LOGO.png" alt=""  />
+        </div>
+        <nav>
+          <ul class="navbar">
+            <li><a href="/">home</a></li>
+            <li><a href="/">about us</a></li>
+            <li><a href="/">courses</a></li>
+            <li><a href="#contact">contact</a></li>
+            <li><a href="login.html">login</a></li>
+            <li><a href="signup.html">signup</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========== End NAVBAR ========== -->
+
+   <!-- ========== Start LOGIN ========== -->
+
+   <section class="section-login--form">
+    <div class="container">
+        <div class="form">
+            <h1>Signup</h1>
+            <form action="" id="form">
+                <div class="input-field">
+                    <label for="email">email</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div class="input-field">
+                    <label for="password">password</label>
+                    <input type="text" name="password" id="password">
+                </div>
+                <div class="form-btn">
+                    <button type="submit" class="btn">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+   </section>
+   
+   <!-- ========== End LOGIN ========== -->
+   
+
+    <!-- ========== Start FOOTER ========== -->
+
+    <footer id="contact">
+      <div class="container grid grid-four--cols">
+        <div class="footer-1--div">
+          <div class="logo-brand">
+            <!-- <a href="index.html" class="footer-subheading">EduHub</a> -->
+            <img src="./images/LOGO.png" alt="">
+          </div>
+          <p>Let's revolutionize the way you study with EduHub</p>
+
+          <div class="social-footer--icons">
+            <a
+              href="https://github.com/rishikesh-revandikar"
+              target="_blank"
+              class="common-text-highlight"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/rishikesh_3110/"
+              target="_blank"
+              class="common-text-highlight"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rishikesh-revandikar-55915922a"
+              target="_blank"
+              class="common-text-highlight"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-div">
+          <p class="footer-subheading">Courses</p>
+          <ul>
+            <li><a href="index.html">html</a></li>
+            <li><a href="index.html">css</a></li>
+            <li><a href="index.html">javascript</a></li>
+            <li><a href="index.html">C++</a></li>
+            <li><a href="index.html">java</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-div">
+          <p class="footer-subheading">Links</p>
+          <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="index.html">About us</a></li>
+            <li><a href="index.html">Courses</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-last-div">
+          <p class="footer-subheading">Contact</p>
+          <ul>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+918288055576">+91-8288055576</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:rishikeshrevandikar3110@gmail.com">rishikeshrevandikar3110@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </footer>
+
+    <!-- ========== End FOOTER ========== -->
+
+    <script>
+      
+      const form = document.querySelector('#form')
+      form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#password').value; 
+        
+
+        const data = {
+          email:email,
+          password:password
+        }
+        console.log(data)
+
+        let storageData = JSON.parse(localStorage.getItem('storageData')) || [];
+        storageData.push(data);
+        console.log(storageData)
+        localStorage.setItem('storageData',JSON.stringify(storageData));
+
+       const xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/register', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        var jsonData = JSON.stringify(data);
+
+        // Set up a callback function to handle the response
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Request was successful, handle the response
+                    console.log(xhr.responseText);
+                    
+                } else {
+                    // Request failed
+                    console.error("Request failed with status:", xhr.status);
+                }
+            }
+        };
+    
+        // Send the request with the JSON data
+        xhr.send(jsonData);
+
+        
+
+      })
+    </script>
+  </body>
+</html>
